@@ -29,7 +29,7 @@ public class MainAlumno {
 			}
 			break;
 		case 3:
-			
+			modificaAlumno(alumnos);
 			break;
 		case 4:
 			borrarAlumno(alumnos);
@@ -45,6 +45,7 @@ public class MainAlumno {
 		}//fin del switch
 		}while(opcionUser!=5); //fin del DOwhile
 	}//fin del main
+	
 	public static void menu() {
 		System.out.println("ALUMNOS/AS");
 		System.out.println("======================================");
@@ -56,11 +57,15 @@ public class MainAlumno {
 	}//fin del menu
 	
 	public static void listadoAlumnos(Alumno[] alumnos) {
-		//for (int i=0;i<alumnos.length;i++) {
-			//if (alumnos[i] !=null) {
-				System.out.println(Arrays.asList(alumnos));
-			//}
-		//}
+		System.out.println();
+		System.out.println("Los alumnos registrados son:");
+		System.out.println("======================================");
+		for(int i=0;i<alumnos.length;i++) {
+			if(alumnos[i]!=null) {
+				System.out.println(alumnos[i]);
+				System.out.println();
+			}
+		}
 	}//Fin de lafuncion que lista los alumnos en caso de que existan 
 	
 	public static int posLibre(Alumno[] alumnos) {
@@ -84,8 +89,31 @@ public class MainAlumno {
 	}
 	//terminar este mañana
 	public static void modificaAlumno(Alumno[] alumnos) {
+		//Buscar al alumno por su nombre
+		//verificar si es distinto a null
+		//pedir la nota para modificarla
+		int indice=0;
 		String nombre="";
 		double notaMedia=0;
+		System.out.println("Por favor introduzca un alumno: ");
+		nombre =lee.next();
+		//Mientras lo que esta guardado en el indice de la tabla alumnos 
+		//Sea distinto de null
+		//El indice no sea mayor a la tabla(que no se salga de la tabla)
+		//Lo que esta guardado en indice (obtengo el nombre) sea distinto del nombre que se introduzca
+		//sigo buscando
+		while(alumnos[indice]!=null && indice < alumnos.length && !alumnos[indice].getNombre().equals(nombre)) {
+			//sigo buscado
+			indice++;
+		}//si el indice es mayor o igual a la logintud de la tabla O lo que esta guardado en la posicion de alumnos es igual a null significa que el alumno no existe
+		if(indice >= alumnos.length || alumnos[indice] ==null) {
+			System.out.println("No existe el alumno.");
+		}else {
+			System.out.println("Por favor introduzca una nota: ");
+			notaMedia=lee.nextDouble();
+			alumnos[indice].setNotaMedia(notaMedia);
+			System.out.println("Nota modificada con exito.");
+		}
 	}//fin de modifica alumno 
 	
 	public static void borrarAlumno(Alumno[] alumnos) {
