@@ -1,4 +1,4 @@
-package ej2;
+package gestisimal;
 
 public class Gestisimal {
 	private int codigo;

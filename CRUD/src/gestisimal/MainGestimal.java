@@ -1,9 +1,11 @@
-package ej2;
+package gestisimal;
 
 public class MainGestimal {
 
 	public static void main(String[] args) {
-	
+	//Creo el array para los articulos
+		
+		
 
 	}
 	public void menu() {
