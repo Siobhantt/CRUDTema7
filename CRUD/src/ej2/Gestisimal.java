@@ -1,16 +1,16 @@
 package ej2;
 
-public class Gestimal {
-	int codigo;
-	String descripcion;
-	double precioCompra;
-	double precioVenta;
-	int stock;
+public class Gestisimal {
+	private int codigo;
+	private String descripcion;
+	private double precioCompra;
+	private double precioVenta;
+	private int stock;
 
 	/**
 	 * Constructor sin parametros
 	 */
-	public Gestimal() {
+	public Gestisimal() {
 
 	}
 
@@ -23,7 +23,7 @@ public class Gestimal {
 	 * @param precioVenta  del articulo
 	 * @param stock        del articulo
 	 */
-	public Gestimal(int codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
+	public Gestisimal(int codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
 		this.codigo = codigo;
 		this.descripcion = descripcion;
 		this.precioCompra = precioCompra;
