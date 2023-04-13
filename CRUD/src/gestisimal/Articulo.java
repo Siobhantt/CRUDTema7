@@ -1,7 +1,7 @@
 package gestisimal;
 
-public class Gestisimal {
-	private int codigo;
+public class Articulo {
+	private String codigo;
 	private String descripcion;
 	private double precioCompra;
 	private double precioVenta;
@@ -10,7 +10,7 @@ public class Gestisimal {
 	/**
 	 * Constructor sin parametros
 	 */
-	public Gestisimal() {
+	public Articulo() {
 
 	}
 
@@ -23,7 +23,7 @@ public class Gestisimal {
 	 * @param precioVenta  del articulo
 	 * @param stock        del articulo
 	 */
-	public Gestisimal(int codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
+	public Articulo(String codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
 		this.codigo = codigo;
 		this.descripcion = descripcion;
 		this.precioCompra = precioCompra;
@@ -35,7 +35,7 @@ public class Gestisimal {
 	 * 
 	 * @return
 	 */
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
@@ -43,7 +43,7 @@ public class Gestisimal {
 	 * 
 	 * @param codigo
 	 */
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
