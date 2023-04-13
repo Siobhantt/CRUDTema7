@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class MainGestimal {
 	static Scanner lee = new Scanner(System.in);
-	static Articulo[] articulo = new Articulo[0];
+	static Articulo[] arrayArticulos = new Articulo[0];
 	public static void main(String[] args) {
 		int opcionUser = 0;
 		
@@ -25,10 +25,10 @@ public class MainGestimal {
 				articuloNuevo();
 				break;
 			case 3:
-
+				borrarArticulo();
 				break;
 			case 4:
-
+				modificaArticulo();
 				break;
 			case 5:
 
@@ -60,16 +60,16 @@ public class MainGestimal {
 
 	public static void listaArticulos() {
 		System.out.println("================ARTICULOS================");
-		for (int i = 0; i < articulo.length; i++) {
-			if (articulo[i].getCodigo() != null) {
-				System.out.println(articulo[i]);
+		for (int i = 0; i < arrayArticulos.length; i++) {
+			if (arrayArticulos[i].getCodigo() != null) {
+				System.out.println(arrayArticulos[i]);
 				System.out.println();
 			} // fin del if
 		} // fin del for
 	}// fin del metodo
 
 	public static void espacioInsertar() {
-		articulo = Arrays.copyOf(articulo, articulo.length + 1);
+		arrayArticulos = Arrays.copyOf(arrayArticulos, arrayArticulos.length + 1);
 	}
 
 	public static void articuloNuevo() {
@@ -87,7 +87,76 @@ public class MainGestimal {
 
 		espacioInsertar();
 
-		articulo[articulo.length - 1] = new Articulo(codigo, descripcion, precioCompra, precioVenta, stock);
+		arrayArticulos[arrayArticulos.length - 1] = new Articulo(codigo, descripcion, precioCompra, precioVenta, stock);
 
+	}//fin del metodo
+	
+
+	public static void borrarArticulo() {
+		String codigo;
+		System.out.println("Introduzca el codigo del articulo que quiere eliminar:");
+		codigo =lee.next();
+		for(int i =0;i<arrayArticulos.length;i++) {
+			if(codigo.equals(arrayArticulos[i].getCodigo())) {
+				arrayArticulos[i].setCodigo(null);
+			}
+		}
+		
+	}//fin del metodo
+	
+	public static void modificaArticulo() {
+		String codigo;
+		String descripcion;
+		double precioCompra=0;
+		double precioVenta=0;
+		int stock=0;
+		int opcionUser=0;
+		do {
+		System.out.println("Por favor introduzca el codigo del articulo que quiere modificar");
+		codigo = lee.next();
+		opciones();
+		switch (opcionUser) {
+		case 1 :
+			System.out.println("Introduzca los cambios en la descripcion: ");
+			descripcion = lee.nextLine();
+			for (int i=0;i<arrayArticulos.length;i++) {
+				if(codigo.equals(arrayArticulos[i].getCodigo())) {
+					arrayArticulos[i].setDescripcion(descripcion);
+				}
+			}
+			break;
+		case 2 :
+			System.out.println("Introduzca los cambios en el precio de compra: ");
+			descripcion = lee.nextLine();
+			for (int i=0;i<arrayArticulos.length;i++) {
+				if(codigo.equals(arrayArticulos[i].getCodigo())) {
+					arrayArticulos[i].setPrecioCompra(precioCompra);
+				}
+			}
+			break;
+		case 3 :
+			System.out.println("Introduzca los cambios en el precio de venta: ");
+			descripcion = lee.nextLine();
+			for (int i=0;i<arrayArticulos.length;i++) {
+				if(codigo.equals(arrayArticulos[i].getCodigo())) {
+					arrayArticulos[i].setPrecioCompra(precioVenta);
+				}
+			}
+			break;
+		case 4:
+			System.out.println("Modificado con exito.");
+			break;
+		default :
+			System.out.println("Opcion no contemplada.");
+			break;
+		}
+		}while (opcionUser!=4);
+	}
+	
+	public static void opciones() {
+		System.out.println("Introduzca lo que quiere modificar del articulo: ");
+		System.out.println("1. Descripcion.");
+		System.out.println("2. Precio compra.");
+		System.out.println("3. Precio venta.");
 	}
 }
