@@ -26,9 +26,16 @@ public class Articulo {
 	public Articulo(String codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
 		this.codigo = codigo;
 		this.descripcion = descripcion;
-		this.precioCompra = precioCompra;
-		this.precioVenta = precioVenta;
+		
+		if(precioCompra>0) {
+			this.precioCompra = precioCompra;
+		}
+		if(precioVenta>0) {
+			this.precioVenta = precioVenta;
+		}
+		if(stock>=0) {
 		this.stock = stock;
+		}
 	}
 
 	/**
@@ -60,7 +67,7 @@ public class Articulo {
 	 * @param descripcion
 	 */
 	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+			this.descripcion = descripcion;
 	}
 
 	/**
@@ -76,7 +83,9 @@ public class Articulo {
 	 * @param precioCompra
 	 */
 	public void setPrecioCompra(double precioCompra) {
-		this.precioCompra = precioCompra;
+		if(precioCompra>0) {
+			this.precioCompra = precioCompra;
+		}
 	}
 
 	/**
@@ -92,7 +101,9 @@ public class Articulo {
 	 * @param precioVenta
 	 */
 	public void setPrecioVenta(double precioVenta) {
-		this.precioVenta = precioVenta;
+		if(precioVenta>0) {
+			this.precioVenta = precioVenta;
+		}
 	}
 
 	/**
@@ -108,7 +119,9 @@ public class Articulo {
 	 * @param stock
 	 */
 	public void setStock(int stock) {
-		this.stock = stock;
+		if(stock>=0) {
+			this.stock = stock;
+			}
 	}
 
 	/**
@@ -116,8 +129,8 @@ public class Articulo {
 	 */
 	@Override
 	public String toString() {
-		return "Gestimal [codigo=" + codigo + ", descripcion=" + descripcion + ", precioCompra=" + precioCompra
-				+ ", precioVenta=" + precioVenta + ", stock=" + stock + "]";
+		return "Codigo=" + codigo + ", descripcion=" + descripcion + ", precioCompra=" + precioCompra
+				+ ", precioVenta=" + precioVenta + ", stock=" + stock ;
 	}
 
 }

@@ -10,8 +10,6 @@ public class MainGestimal {
 	static Articulo[] arrayArticulos = new Articulo[0];
 	public static void main(String[] args) {
 		int opcionUser = 0;
-		
-		int posicion = 0;
 		do {
 			menu();
 			System.out.println("Por favor introduzca una opcion: ");
@@ -91,7 +89,6 @@ public class MainGestimal {
 
 	}//fin del metodo
 	
-
 	public static void borrarArticulo() {
 		String codigo;
 		System.out.println("Introduzca el codigo del articulo que quiere eliminar:");
