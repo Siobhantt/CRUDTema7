@@ -34,7 +34,7 @@ public class MainGestimal {
 				entradaMercancia();
 				break;
 			case 6:
-
+				salidaMercancia();
 				break;
 			case 7:
 				fin();
@@ -166,7 +166,7 @@ public class MainGestimal {
 		String codigo="";
 		int cantidad=0;
 		int stockActual=0;
-		System.out.println("Por favor introduzca el codigo al que quiere incrementarle la cantidad de mercancia: ");
+		System.out.println("Por favor introduzca el codigo del producto al que quiere incrementarle la cantidad de mercancia: ");
 		codigo=lee.next();
 		System.out.println("Por favor introduzca la cantidad de mercancia que desea incrementar: ");
 		cantidad=lee.nextInt();
@@ -177,7 +177,26 @@ public class MainGestimal {
 			}
 		}
 		System.out.println("Stock aumentado con exito.");
+	}//fin del metodo
+	
+	public static void salidaMercancia() {
+		String codigo;
+		int cantidad;
+		int stock;
+		
+		System.out.println("Por favor introduzca el codigo del producto al que quiere extraerle mercancia: ");
+		codigo=lee.next();
+		System.out.println("Por favor introduzca la cantidad de mercancia que desea extraer: ");
+		cantidad = lee.nextInt();
+		for (int i=0;i<arrayArticulos.length;i++) {
+			if(codigo.equals(arrayArticulos[i].getCodigo())){
+				stock = arrayArticulos[i].getStock();
+				arrayArticulos[i].setStock(stock-=cantidad);
+			}
+		}
+	System.out.println("Mercancia retirada con exito.");
 	}
+	
 	
 	public static void fin(){
 		System.out.println("Fin del programa, hasta luego! (;");
