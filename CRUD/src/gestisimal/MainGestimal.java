@@ -31,13 +31,13 @@ public class MainGestimal {
 				modificaArticulo();
 				break;
 			case 5:
-
+				entradaMercancia();
 				break;
 			case 6:
 
 				break;
 			case 7:
-
+				fin();
 				break;
 			default:
 				System.out.println("Opcion no contemplada.");
@@ -101,7 +101,7 @@ public class MainGestimal {
 				arrayArticulos[i].setCodigo(null);
 			}
 		}
-		
+		System.out.println("Articulo borrado con exito.");
 	}//fin del metodo
 	
 	public static void modificaArticulo() {
@@ -109,12 +109,12 @@ public class MainGestimal {
 		String descripcion;
 		double precioCompra=0;
 		double precioVenta=0;
-		int stock=0;
 		int opcionUser=0;
 		do {
 		System.out.println("Por favor introduzca el codigo del articulo que quiere modificar");
 		codigo = lee.next();
 		opciones();
+		opcionUser=lee.nextInt();
 		switch (opcionUser) {
 		case 1 :
 			System.out.println("Introduzca los cambios en la descripcion: ");
@@ -127,7 +127,7 @@ public class MainGestimal {
 			break;
 		case 2 :
 			System.out.println("Introduzca los cambios en el precio de compra: ");
-			descripcion = lee.nextLine();
+			precioCompra = lee.nextDouble();
 			for (int i=0;i<arrayArticulos.length;i++) {
 				if(codigo.equals(arrayArticulos[i].getCodigo())) {
 					arrayArticulos[i].setPrecioCompra(precioCompra);
@@ -136,7 +136,7 @@ public class MainGestimal {
 			break;
 		case 3 :
 			System.out.println("Introduzca los cambios en el precio de venta: ");
-			descripcion = lee.nextLine();
+			precioVenta= lee.nextDouble();
 			for (int i=0;i<arrayArticulos.length;i++) {
 				if(codigo.equals(arrayArticulos[i].getCodigo())) {
 					arrayArticulos[i].setPrecioCompra(precioVenta);
@@ -145,6 +145,7 @@ public class MainGestimal {
 			break;
 		case 4:
 			System.out.println("Modificado con exito.");
+			System.out.println("Redirigiendo al menu principal...");
 			break;
 		default :
 			System.out.println("Opcion no contemplada.");
@@ -158,5 +159,27 @@ public class MainGestimal {
 		System.out.println("1. Descripcion.");
 		System.out.println("2. Precio compra.");
 		System.out.println("3. Precio venta.");
+		System.out.println("4. Salida al menú principal.");
+	}
+	
+	public static void entradaMercancia() {
+		String codigo="";
+		int cantidad=0;
+		int stockActual=0;
+		System.out.println("Por favor introduzca el codigo al que quiere incrementarle la cantidad de mercancia: ");
+		codigo=lee.next();
+		System.out.println("Por favor introduzca la cantidad de mercancia que desea incrementar: ");
+		cantidad=lee.nextInt();
+		for(int i=0;i<arrayArticulos.length;i++) {
+			if(codigo.equals(arrayArticulos[i].getCodigo())){
+				stockActual = arrayArticulos[i].getStock();
+				arrayArticulos[i].setStock(stockActual+=cantidad);
+			}
+		}
+		System.out.println("Stock aumentado con exito.");
+	}
+	
+	public static void fin(){
+		System.out.println("Fin del programa, hasta luego! (;");
 	}
 }
