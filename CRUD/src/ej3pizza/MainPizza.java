@@ -31,14 +31,15 @@ public class MainPizza {
 			case 4:
 				adios();
 				break;
-				default:
-					System.out.println("Opcion no contemplada :(");
-					break;
+			default:
+				System.out.println("Opcion no contemplada :(");
+				break;
 			}
 		} while (opcionUser != 4);
 	}// FIN DEL MAIN
 
 	public static void menu() {
+		System.out.println();
 		System.out.println("Dispone de las siguientes opciones: ");
 		System.out.println("1. Listado de pizzas.");
 		System.out.println("2. Nuevo pedido");
@@ -78,23 +79,24 @@ public class MainPizza {
 		tamaño = lee.next();
 		espacioNuevo();
 		arrayPizzas[arrayPizzas.length - 1] = new Pizza(codigo, tipo, estado, tamaño);
-	System.out.println("Pedido registrado correctamente.");
-	System.out.println("Marchando pizza... (;");
+		System.out.println("Pedido registrado correctamente.");
+		System.out.println("Marchando pizza... (;");
 	}
-	
+
 	public static void servida() {
-		int codigo=0;
+		int codigo = 0;
 		Estado estado;
 		estado = Pizza.Estado.Servida;
 		System.out.println("Introduzca el codigo de la pizza entregada: ");
 		codigo = lee.nextInt();
-		for(Pizza unidad : arrayPizzas) {
-			if(unidad.getCodigo()==codigo) {
+		for (Pizza unidad : arrayPizzas) {
+			if (unidad.getCodigo() == codigo) {
 				unidad.setEstado(estado);
 			}
 		}
 		System.out.println("La pizza ha sido servida!");
-	}//fin del metodo
+	}// fin del metodo
+
 	public static void adios() {
 		System.out.println("Finalizando programa, hasta luego!");
 	}
