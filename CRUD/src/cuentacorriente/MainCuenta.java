@@ -35,13 +35,13 @@ public class MainCuenta {
 				bajaUsuario();
 				break;
 			case 5:
-
+				sacarDinero();
 				break;
 			case 6:
-
+				ingresarDinero();
 				break;
 			case 7:
-
+				fin();
 				break;
 			default:
 				System.out.println("Opcion no contemplada");
@@ -55,6 +55,7 @@ public class MainCuenta {
 		for (int i = 0; i < cuentas.length; i++) {
 			if (!cuentas[i].getDNI().isEmpty()) {
 				System.out.println(cuentas[i]);
+				System.out.println();
 			}
 		}
 		System.out.println();
@@ -92,7 +93,7 @@ public class MainCuenta {
 		System.out.println("5. Solicitud de extracion de fondos.");
 		System.out.println("6. Solicitud de ingreso de fondos.");
 		System.out.println("7. Salir del programa.");
-		System.out.println();
+		System.out.print(":");
 	}
 
 	public static void menuAct() {
@@ -162,6 +163,8 @@ public class MainCuenta {
 				cuentas[i].setDNI(null);
 			}
 		}
+		System.out.println("Usuario dado de baja.");
+		System.out.println();
 	}
 
 	public static void sacarDinero() {
@@ -178,9 +181,36 @@ public class MainCuenta {
 				actualSaldo = cuentas[i].getSaldo();
 				if (actualSaldo >= cantidad) {
 					cuentas[i].setSaldo(actualSaldo - cantidad);
+					System.out.println("Retirada exitosa!");
+					System.out.println("Su nuevo saldo es: " + cuentas[i].getSaldo());
+				}
+				else {
+					System.err.println("La cantidad que desea retirar es mayor a sus fondos");
 				}
 			}
 		}
+	}
+	public static void ingresarDinero() {
+		String dni = "";
+		double cantidad = 0;
+		double actualSaldo;
+
+		System.out.println("Introduzca el dni del propietario de la cuenta: ");
+		dni = lee.next();
+		System.out.println("Introduzca la cantidad a depositar: ");
+		cantidad = lee.nextDouble();
+		for (int i = 0; i < cuentas.length; i++) {
+			if (dni.equalsIgnoreCase(cuentas[i].getDNI())) {
+				actualSaldo = cuentas[i].getSaldo();
+					cuentas[i].setSaldo(actualSaldo + cantidad);
+					System.out.println("Deposito exitoso!");
+					System.out.println("Su nuevo saldo es: " + cuentas[i].getSaldo());
+				
+			}
+		}
+	}
+	public static void fin() {
+		System.out.println("Hasta luego! (;");
 	}
 
 }
