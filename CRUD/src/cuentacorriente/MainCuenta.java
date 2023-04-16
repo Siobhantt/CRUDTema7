@@ -32,7 +32,7 @@ public class MainCuenta {
 				break;
 			case 4:
 				// D
-				
+				bajaUsuario();
 				break;
 			case 5:
 
@@ -54,9 +54,10 @@ public class MainCuenta {
 	public static void listaCuentas() {
 		for (int i = 0; i < cuentas.length; i++) {
 			if (!cuentas[i].getDNI().isEmpty()) {
-				System.out.println(i);
+				System.out.println(cuentas[i]);
 			}
 		}
+		System.out.println();
 	}
 
 	public static void espacioCuenta() {
@@ -91,23 +92,25 @@ public class MainCuenta {
 		System.out.println("5. Solicitud de extracion de fondos.");
 		System.out.println("6. Solicitud de ingreso de fondos.");
 		System.out.println("7. Salir del programa.");
+		System.out.println();
 	}
-	
-		public static void menuAct() {
-			System.out.println("Seleccione los datos del usuario que desea actualizar: ");
-			System.out.println("1. DNI.");
-			System.out.println("2. Nombre.");
-			System.out.println("3. Sexo.");
-			System.out.println("4. Salir al menú principal.");
-		}
-	
+
+	public static void menuAct() {
+		System.out.println("Seleccione los datos del usuario que desea actualizar: ");
+		System.out.println("1. DNI.");
+		System.out.println("2. Nombre.");
+		System.out.println("3. Sexo.");
+		System.out.println("4. Salir al menú principal.");
+	}
+
 	public static void actualizarCuenta() {
 		int opcion = 0;
 		String dni;
 		String newDni;
 		String nombre;
 		String sexo;
-		System.out.println("Recuerde contar con la documentacion del usuario para realizar los cambios correspondientes.");
+		System.out.println(
+				"Recuerde contar con la documentacion del usuario para realizar los cambios correspondientes.");
 		System.out.println("Por favor introduzca el dni del usuario: ");
 		dni = lee.next();
 		do {
@@ -117,26 +120,26 @@ public class MainCuenta {
 			case 1:
 				System.out.println("Por favor introduzca los cambios en el DNI.");
 				newDni = lee.next();
-				for (int i=0;i<cuentas.length;i++) {
-					if(dni.equalsIgnoreCase(cuentas[i].getDNI())) {
+				for (int i = 0; i < cuentas.length; i++) {
+					if (dni.equalsIgnoreCase(cuentas[i].getDNI())) {
 						cuentas[i].setDNI(newDni);
 					}
 				}
 				break;
 			case 2:
 				System.out.println("Por favor introduzca los cambios en el nombre.");
-				nombre=lee.next();
-				for (int i=0;i<cuentas.length;i++) {
-					if(dni.equalsIgnoreCase(cuentas[i].getDNI())) {
+				nombre = lee.next();
+				for (int i = 0; i < cuentas.length; i++) {
+					if (dni.equalsIgnoreCase(cuentas[i].getDNI())) {
 						cuentas[i].setNombre(nombre);
 					}
 				}
 				break;
 			case 3:
 				System.out.println("Por favor introduzca los cambios en el sexo.");
-				sexo=lee.next();
-				for (int i=0;i<cuentas.length;i++) {
-					if(dni.equalsIgnoreCase(cuentas[i].getDNI())) {
+				sexo = lee.next();
+				for (int i = 0; i < cuentas.length; i++) {
+					if (dni.equalsIgnoreCase(cuentas[i].getDNI())) {
 						cuentas[i].setSexo(sexo);
 					}
 				}
@@ -144,20 +147,40 @@ public class MainCuenta {
 			case 4:
 				System.out.println("Fin del area de modificaciones.");
 				break;
-			default :
+			default:
 				System.out.println("Opcion no contemplada.");
 			}
 		} while (opcion != 4);
 	}
-	
+
 	public static void bajaUsuario() {
 		String dni;
 		System.out.println("Por favor introduzca el DNI del usuario que quiere retirar del sistema: ");
 		dni = lee.next();
-		for(int i=0;i<cuentas.length;i++) {
-			if(dni.equalsIgnoreCase(cuentas[i].getDNI())) {
+		for (int i = 0; i < cuentas.length; i++) {
+			if (dni.equalsIgnoreCase(cuentas[i].getDNI())) {
 				cuentas[i].setDNI(null);
 			}
 		}
 	}
+
+	public static void sacarDinero() {
+		String dni = "";
+		double cantidad = 0;
+		double actualSaldo;
+
+		System.out.println("Introduzca el dni del propietario de la cuenta: ");
+		dni = lee.next();
+		System.out.println("Introduzca la cantidad a retirar: ");
+		cantidad = lee.nextDouble();
+		for (int i = 0; i < cuentas.length; i++) {
+			if (dni.equalsIgnoreCase(cuentas[i].getDNI())) {
+				actualSaldo = cuentas[i].getSaldo();
+				if (actualSaldo >= cantidad) {
+					cuentas[i].setSaldo(actualSaldo - cantidad);
+				}
+			}
+		}
+	}
+
 }

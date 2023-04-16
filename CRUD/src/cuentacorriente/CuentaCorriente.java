@@ -123,6 +123,7 @@ package cuentacorriente;
 		 */
 		public double sacarDinero(double cantidad) {
 			boolean posible=false;
+			
 			if(this.saldo>cantidad) {
 				posible=true;
 				saldo -= cantidad;
@@ -147,12 +148,14 @@ package cuentacorriente;
 		/**
 		 * Metodo para mostrar informacion sobre el propietario
 		 */
-		public void mostrarInformacion() {
-			System.out.println("DNI: " + DNI);
-			System.out.println("Nombre: " + nombre);
-			System.out.println("Saldo: " + saldo);
-			System.out.println("Sexo: " + sexo);
+
+		@Override
+		public String toString() {
+			String userInfo;
+			userInfo = "Usuario: " + nombre + "\nDNI: " + DNI + "\nSaldo: " + saldo +"\nSexo:" + sexo; 
+			return userInfo;
 		}
+		
 	}
 
 
