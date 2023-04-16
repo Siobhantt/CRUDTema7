@@ -28,10 +28,11 @@ public class MainCuenta {
 				break;
 			case 3:
 				// U
-
+				actualizarCuenta();
 				break;
 			case 4:
 				// D
+				
 				break;
 			case 5:
 
@@ -83,8 +84,8 @@ public class MainCuenta {
 
 	public static void menuAdmin() {
 		System.out.println("Seleccione una de las siguientes opciones disponibles: ");
-		System.out.println("1. Listado de usuarios.");
-		System.out.println("2. Alta de usuario.");
+		System.out.println("1. Alta de usuario.");
+		System.out.println("2. Listado de usuarios.");
 		System.out.println("3. Actualizar datos. ");
 		System.out.println("4. Baja de usuario.");
 		System.out.println("5. Solicitud de extracion de fondos.");
@@ -104,6 +105,8 @@ public class MainCuenta {
 		int opcion = 0;
 		String dni;
 		String newDni;
+		String nombre;
+		String sexo;
 		System.out.println("Recuerde contar con la documentacion del usuario para realizar los cambios correspondientes.");
 		System.out.println("Por favor introduzca el dni del usuario: ");
 		dni = lee.next();
@@ -121,14 +124,40 @@ public class MainCuenta {
 				}
 				break;
 			case 2:
+				System.out.println("Por favor introduzca los cambios en el nombre.");
+				nombre=lee.next();
+				for (int i=0;i<cuentas.length;i++) {
+					if(dni.equalsIgnoreCase(cuentas[i].getDNI())) {
+						cuentas[i].setNombre(nombre);
+					}
+				}
 				break;
 			case 3:
+				System.out.println("Por favor introduzca los cambios en el sexo.");
+				sexo=lee.next();
+				for (int i=0;i<cuentas.length;i++) {
+					if(dni.equalsIgnoreCase(cuentas[i].getDNI())) {
+						cuentas[i].setSexo(sexo);
+					}
+				}
 				break;
 			case 4:
+				System.out.println("Fin del area de modificaciones.");
 				break;
 			default :
 				System.out.println("Opcion no contemplada.");
 			}
 		} while (opcion != 4);
+	}
+	
+	public static void bajaUsuario() {
+		String dni;
+		System.out.println("Por favor introduzca el DNI del usuario que quiere retirar del sistema: ");
+		dni = lee.next();
+		for(int i=0;i<cuentas.length;i++) {
+			if(dni.equalsIgnoreCase(cuentas[i].getDNI())) {
+				cuentas[i].setDNI(null);
+			}
+		}
 	}
 }
