@@ -112,8 +112,8 @@ package cuentacorriente;
 		 * Establece el sexo del propietario
 		 * @param Enumerado de tipo Sexo
 		 */
-		public void setSexo(Sexo sexo) {
-			this.sexo = sexo;
+		public void setSexo(String sexo) {
+			this.sexo = Sexo.valueOf(sexo);
 		}
 	
 		/**
